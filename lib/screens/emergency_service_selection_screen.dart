@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../models/emergency_service.dart';
 
-class EmergencyServiceSelectionScreen extends StatelessWidget {
+class EmergencyServiceSelectionScreen extends StatefulWidget {
   final ServiceType serviceType;
   final Stream<List<EmergencyService>> servicesStream;
   final String title;
@@ -13,8 +14,21 @@ class EmergencyServiceSelectionScreen extends StatelessWidget {
     required this.title,
   });
 
+  @override
+  State<EmergencyServiceSelectionScreen> createState() => _EmergencyServiceSelectionScreenState();
+}
+
+class _EmergencyServiceSelectionScreenState extends State<EmergencyServiceSelectionScreen> {
+  Future<void> _makeDirectCall(String phoneNumber) async {
+    try {
+      await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   IconData get serviceIcon {
-    switch (serviceType) {
+    switch (widget.serviceType) {
       case ServiceType.police:
         return Icons.local_police;
       case ServiceType.fire:
@@ -30,13 +44,13 @@ class EmergencyServiceSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
       ),
       body: StreamBuilder<List<EmergencyService>>(
-        stream: servicesStream,
+        stream: widget.servicesStream,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
@@ -102,12 +116,7 @@ class EmergencyServiceSelectionScreen extends StatelessWidget {
                   trailing: IconButton(
                     icon: const Icon(Icons.call, color: Colors.blue),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Calling ${service.contactNumber}...'),
-                          duration: const Duration(seconds: 2),
-                        ),
-                      );
+                      _makeDirectCall(service.contactNumber);
                     },
                   ),
                   onTap: () {
