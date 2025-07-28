@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "86676317064",
+    "project_id": "fir-file-upload-912f9",
+    "storage_bucket": "fir-file-upload-912f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86676317064:android:83c5aae052b7391497503d",
+        "android_client_info": {
+          "package_name": "com.example.buri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7or3JsPlAgg2cdX2pNqrDw--pgkxsec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86676317064-jr7md8lgb3ih0he9c5f7k2kc5k5j9bnq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.buri"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86676317064:android:9136fa70dfea64bb97503d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_upload_file_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7or3JsPlAgg2cdX2pNqrDw--pgkxsec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86676317064-jr7md8lgb3ih0he9c5f7k2kc5k5j9bnq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.buri"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86676317064:android:022e1ea480e45e9997503d",
+        "android_client_info": {
+          "package_name": "com.example.women_safety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7or3JsPlAgg2cdX2pNqrDw--pgkxsec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86676317064-7bnkob9fs1b2obbtt6rur8ccr0qokn4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86676317064-jr7md8lgb3ih0he9c5f7k2kc5k5j9bnq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.buri"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

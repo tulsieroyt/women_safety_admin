@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/incident.dart';
 import '../services/incident_service.dart';
+import 'admin_management_screen.dart';
+import 'admin_profile_screen.dart';
 import 'incident_details_screen.dart';
 
 class IncidentDashboard extends StatefulWidget {
@@ -32,6 +36,53 @@ class _IncidentDashboardState extends State<IncidentDashboard>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Incident Dashboard'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: PopupMenuButton<String>(
+              icon: const CircleAvatar(
+                backgroundColor: Colors.blueAccent,
+                child: Icon(Icons.person, color: Colors.white),
+              ),
+              tooltip: 'Admin Menu',
+              onSelected: (value) async {
+                final user = FirebaseAuth.instance.currentUser;
+                if (user == null) return;
+
+                final doc = await FirebaseFirestore.instance.collection('admins').doc(user.uid).get();
+                if (!doc.exists) {
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('You are not registered as an admin.')),
+                  );
+                  return;
+                }
+
+                final isSuperAdmin = doc['isSuperAdmin'] ?? false;
+
+                if (value == 'profile') {
+                  if (!context.mounted) return;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => isSuperAdmin
+                          ? const AdminManagementScreen()
+                          : const AdminProfileScreen(),
+                    ),
+                  );
+                } else if (value == 'logout') {
+                  await FirebaseAuth.instance.signOut();
+                  if (!context.mounted) return;
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                }
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem(value: 'profile', child: Text('My Profile')),
+                const PopupMenuItem(value: 'logout', child: Text('Logout')),
+              ],
+            ),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -43,6 +94,8 @@ class _IncidentDashboardState extends State<IncidentDashboard>
           ],
         ),
       ),
+
+
       body: TabBarView(
         controller: _tabController,
         children: const [
